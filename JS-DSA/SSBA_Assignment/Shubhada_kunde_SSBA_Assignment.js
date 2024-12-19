@@ -23,7 +23,7 @@ function runTestCases(algorithmName, algorithmFunction, testCases) {
 function BruteForcemaxSubarraySum(arr) {
   // Initialize maxSum to a very smallest posible number
   let maximumSum = -10000;
-  let start = 0, end = 0;
+  let start = 0, end = 0, maxLength = 0;
 
   // Looping through each starting index of the subarrays
   for (let i = 0; i < arr.length; i++) {
@@ -32,10 +32,16 @@ function BruteForcemaxSubarraySum(arr) {
     // Looping through the ending index of the subarray
     for (let j = i; j < arr.length; j++) {
       currentSum += arr[j];
-      if (currentSum > maximumSum) {
+      
+      // if we have 2 subarrays whose sums are equal then Updating maximum sum and will choose the longest subarray
+      if (
+        currentSum > maximumSum ||
+        (currentSum === maximumSum && j - i + 1 > maxLength)
+      ) {
         maximumSum = currentSum; // updating maxSum
         start = i; // updating start index
         end = j; // updating end index
+        maxLength = j - i + 1;
       }
     }
   }
@@ -60,7 +66,7 @@ function KadanemaxSubarraySum(arr) {
 
   let currentSum = arr[0];
   let maximumSum = arr[0];
-  let start = 0, end = 0, tempStart = 0;
+  let start = 0, end = 0, tempStart = 0,  maxLength = 1;
     
 
   // Traversing the array start from the second element
@@ -72,10 +78,15 @@ function KadanemaxSubarraySum(arr) {
       currentSum += arr[i];
     }
 
-    if (currentSum > maximumSum) {
-      maximumSum = currentSum; // update maxSum
-      start = tempStart; // update start index
-      end = i; // update end index
+    // in case of 2 subarrays whose sums are equal then Updating maximum sum and will choose the longest subarray
+    if (
+      currentSum > maximumSum ||
+      (currentSum === maximumSum && i - tempStart + 1 > maxLength)
+    ) {
+      maximumSum = currentSum; // updating maxSum
+      start = tempStart; // updating start index
+      end = i; // updating end index
+      maxLength = i - tempStart + 1;
     }
   }
 
@@ -99,6 +110,7 @@ const testCases = [
   { arr: [-1, -2, -3, -4], expectedOutput: -1 }, // all negative numbers
   { arr: [2, 3, 4, 1, 5], expectedOutput: 15 }, // all positive numbers
   { arr: [5, 4, -1, 7, 8], expectedOutput: 23 }, // positive + negative numbers
+  { arr: [5, -2, -1, 3, -4], expectedOutput: 5 }, // this will give 2 subarrays but will print longest one
   { arr: [0, -1, 0, -2, 0], expectedOutput: 0 },
   { arr: [8, -19, 5, -4, 20], expectedOutput: 21 },
   { arr: [0], expected: 0 },
