@@ -4,16 +4,14 @@ function runTestCases(algorithmName, algorithmFunction, testCases) {
 
   testCases.forEach(({ arr, expectedOutput }, index) => {
     // Executing the function with the provided input array
-    const result = algorithmFunction(arr);
+    const { maxSum, subarray } = algorithmFunction(arr);
 
     // comparing result with expected output
-    const status = result === expectedOutput ? "Passed" : "Failed";
+    const status = maxSum === expectedOutput ? "Passed" : "Failed";
 
     // printing the result
     console.log(
-      `Test Case ${
-        index + 1
-      }: ${status} = Result: ${result}, Expected: ${expectedOutput} `
+      `Test Case ${index + 1}: ${status} => Max Sum: ${maxSum}, Subarray: [${subarray}], Expected Sum: ${expectedOutput}`
     );
   });
   console.log("");
@@ -25,6 +23,7 @@ function runTestCases(algorithmName, algorithmFunction, testCases) {
 function BruteForcemaxSubarraySum(arr) {
   // Initialize maxSum to a very smallest posible number
   let maximumSum = -10000;
+  let start = 0, end = 0;
 
   // Looping through each starting index of the subarrays
   for (let i = 0; i < arr.length; i++) {
@@ -33,11 +32,16 @@ function BruteForcemaxSubarraySum(arr) {
     // Looping through the ending index of the subarray
     for (let j = i; j < arr.length; j++) {
       currentSum += arr[j];
-      maximumSum = Math.max(maximumSum, currentSum); // updating maxsum
+      if (currentSum > maximumSum) {
+        maximumSum = currentSum; // updating maxSum
+        start = i; // updating start index
+        end = j; // updating end index
+      }
     }
   }
 
-  return maximumSum;
+    // Returning maxSum and its subarray
+  return { maxSum: maximumSum, subarray: arr.slice(start, end + 1) };
 }
 
 // Complexity Analysis
@@ -56,15 +60,27 @@ function KadanemaxSubarraySum(arr) {
 
   let currentSum = arr[0];
   let maximumSum = arr[0];
+  let start = 0, end = 0, tempStart = 0;
+    
 
   // Traversing the array start from the second element
   for (let i = 1; i < arr.length; i++) {
-    // add the current element to the existing sum or start a new subarray with the current element
-    currentSum = Math.max(arr[i], currentSum + arr[i]);
-    maximumSum = Math.max(maximumSum, currentSum); // update maxsum
+     if (arr[i] > currentSum + arr[i]) {
+      currentSum = arr[i];
+      tempStart = i; // updating the temporary start index
+    } else {
+      currentSum += arr[i];
+    }
+
+    if (currentSum > maximumSum) {
+      maximumSum = currentSum; // update maxSum
+      start = tempStart; // update start index
+      end = i; // update end index
+    }
   }
 
-  return maximumSum;
+   // Returning both maxSum and its subarray
+  return { maxSum: maximumSum, subarray: arr.slice(start, end + 1) };
 }
 
 // Complexity Analysis
