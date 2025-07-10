@@ -1,3 +1,4 @@
-if (i != 0) {
-      reversedSentence = " " + reversedSentence;
-    }
+ new Set(arr);
+  let UniqueArray = [...NewArr];
+  //   console.log(NewArr);
+  return UniqueArray;

@@ -6,7 +6,7 @@ const FizzBuzz = (startNum, endNum) => {
     } else if (i % 3 === 0) {
       arr.push("fizz");
     } else if (i % 5 === 0) {
-      arr.push("bizz");
+      arr.push("buzz");
     } else {
       arr.push(i);
     }

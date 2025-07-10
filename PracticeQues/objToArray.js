@@ -9,6 +9,6 @@ let entries = Object.entries(obj);
 console.log(entries);
 console.log(entries.flat());
 
-// converting array to array
+// converting array to object
 let newObj = Object.fromEntries(entries);
 console.log(newObj);

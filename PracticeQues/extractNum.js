@@ -28,7 +28,6 @@ const extractNumberFromStr = (str) => {
     // Add the last number if there is one
     result.push(Number(currentNumber));
   }
-
   return result.length > 0 ? result : null;
 };
 

@@ -5,13 +5,13 @@ const findMax = (arr) => {
   // return Math.max(...arr);
 
   // OR
-  let largest = arr[0];
+  let max = arr[0];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > largest) {
-      largest = arr[i];
+    if (arr[i] > max) {
+      max = arr[i];
     }
   }
-  return largest;
+  return max;
 };
 
 console.log(findMax([1, 2, 5, 9, 3]));

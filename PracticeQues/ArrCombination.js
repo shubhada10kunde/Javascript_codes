@@ -1,6 +1,33 @@
-const findCombination = (arr, target) => {
+// const findCombination = (arr, target) => {
+//   let result = [];
+//   // find pairs with sum to target
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[i] + arr[j] === target) {
+//         result.push([arr[i], arr[j]]);
+//       }
+//     }
+//   }
+
+//   // find triplet that sum to the target
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//       for (let k = j + 1; k < arr.length; k++) {
+//         if (arr[i] + arr[j] + arr[k] === target) {
+//           result.push([arr[i], arr[j], arr[k]]);
+//         }
+//       }
+//     }
+//   }
+//   return result;
+// };
+
+// console.log(findCombination([1, 3, 2, 4, 0, 2, 1], 4));
+
+function findCombination(arr, target) {
   let result = [];
-  // find pairs with sum to target
+
+  // pairs of 2 with sum equal to target
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[i] + arr[j] === target) {
@@ -9,7 +36,7 @@ const findCombination = (arr, target) => {
     }
   }
 
-  // find triplet that sum to the target
+  // triplet with sum equal to target
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       for (let k = j + 1; k < arr.length; k++) {
@@ -19,7 +46,8 @@ const findCombination = (arr, target) => {
       }
     }
   }
+  console.log(result.length);
   return result;
-};
+}
 
 console.log(findCombination([1, 3, 2, 4, 0, 2, 1], 4));

@@ -1,5 +1,6 @@
 const toCamelCase = (str) => {
   str = str.trim().split(" ");
+  console.log(str);
 
   str = str.map((currElem, index) => {
     if (index === 0) {

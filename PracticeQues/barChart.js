@@ -12,8 +12,8 @@ const generateBarChart = (arr) => {
 
   // OR
   return arr
-    .map((currElem, index) => {
-      return `${index + 1}: ${"*".repeat(currElem)}`;
+    .map((currElement, index) => {
+      return `${index + 1}: ${"*".repeat(currElement)}`;
     })
     .join("\n");
 };

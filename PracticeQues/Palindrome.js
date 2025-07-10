@@ -3,7 +3,7 @@
 const isPalindrome = (str) => {
   str = str.toLowerCase().replace(/\W/g, "");
   // (/\W/g,""):: uses the replace() method to remove all non-word characters from string like comma, punctuation, full stop...etc
-  // non-word characters not belong to [a-z,A-Z,0-9]
+  // non-word characters does not belongs to [a-z,A-Z,0-9]
   // the g flag performs a global search means it replaces all occurences of non-word character in the string.
 
   let reverse_str = str.split("").reverse().join("");

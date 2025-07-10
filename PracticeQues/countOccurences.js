@@ -6,6 +6,7 @@ const CountChar = (word, char) => {
     if (currChar === char) {
       counter++;
     }
+    console.log(counter + "\n");
     return counter;
   }, 0);
   //   console.log(TotalCount);
